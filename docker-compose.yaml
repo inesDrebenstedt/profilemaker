@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./react-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend-api
+    ports:
+      - "5000:5000"
+    depends_on:
+      - llm
+
+  llm:
+    build: ./llm-server
+    ports:
+      - "8000:8000"

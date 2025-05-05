@@ -1,0 +1,4 @@
+flask
+ollama  # or your specific LLM library
+requests
+# Add other dependencies as needed
