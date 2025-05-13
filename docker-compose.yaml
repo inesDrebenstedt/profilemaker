@@ -1,10 +1,10 @@
-version: '3.8'
+version: "3.9"  # or a higher version if Docker supports it
 
 services:
   frontend:
     build: ./react-frontend
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
 
@@ -13,9 +13,14 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - llm
+      - llm-generate-response
 
-  llm:
-    build: ./llm-server
+  llm-generate-response:
+    build: ./llm-generate-response
     ports:
       - "8000:8000"
+    volumes:
+      - hf_cache:/root/.cache/huggingface
+      
+volumes:
+  hf_cache:
